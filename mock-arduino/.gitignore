@@ -1,0 +1,4 @@
+node_modules
+package-lock.json
+ProjetoDeAplicacao.code-workspace
+.vscode/launch.json
