@@ -1,0 +1,6 @@
+FROM render
+
+COPY . /app
+WORKDIR /app
+
+RUN docker-compose -f docker-compose-ce.yml up -d

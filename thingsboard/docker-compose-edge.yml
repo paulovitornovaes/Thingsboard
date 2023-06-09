@@ -1,0 +1,34 @@
+version: '3.0'
+services:
+  thingsboard-edge:
+    restart: always
+    image: "thingsboard/tb-edge:3.4.0EDGE"
+    ports:
+      - "18080:8080"
+      - "11883:1883"
+      - "15683-15688:5683-5688/udp"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/tb-edge
+      CLOUD_ROUTING_KEY: 0d498a37-cd4e-9c01-a8b2-b8ebf342bd65
+      CLOUD_ROUTING_SECRET: vxibszu6qgach29vp8pa
+      CLOUD_RPC_HOST: 192.168.0.105
+    volumes:
+      - mytb-edge-data:/data
+      - mytb-edge-logs:/var/log/tb-edge
+  postgres:
+    restart: always
+    image: "postgres:12"
+    ports:
+      - "5432"
+    environment:
+      POSTGRES_DB: tb-edge
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - mytb-edge-data-db:/var/lib/postgresql/data
+volumes:
+  mytb-edge-data:
+    external: true
+  mytb-edge-logs:
+    external: true
+  mytb-edge-data-db:
+   external: true
