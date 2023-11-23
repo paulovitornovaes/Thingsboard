@@ -2,7 +2,7 @@ version: '3.0'
 services:
   thingsboard-ce:
     restart: always
-    image: "thingsboard/tb-postgres:3.4.0"
+    image: "thingsboard/tb-postgres:3.6.0"
     ports:
       - "8080:9090"
       - "1883:1883"
